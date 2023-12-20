@@ -1,5 +1,5 @@
 #! /bin/bash
-path = $PWD
+path=$PWD
 cd $path/DJI/Payload-SDK/samples/sample_c/platform/linux/manifold2/
 mkdir project/
 cd project/
