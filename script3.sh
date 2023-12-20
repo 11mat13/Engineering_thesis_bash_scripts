@@ -1,6 +1,5 @@
 #! /usr/bin/bash
 
-cd ~/DJI/
 git clone https://github.com/adrianomarto/soft_uart
 git clone https://github.com/11mat13/termios.git
 sudo apt-get install raspberrypi-kernel-headers
