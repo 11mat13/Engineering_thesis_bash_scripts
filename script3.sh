@@ -10,5 +10,3 @@ cp termios/module.c soft_uart/
 cd soft_uart/
 make
 sudo make install
-
-
