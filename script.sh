@@ -46,7 +46,7 @@ sudo echo -e "\nInstalling kernel module to run soft uart:\n\n"
 cd ~/
 module_name="soft_uart" # Replace with your module name (without the .ko extension)
 module_path=$(modinfo -n "$module_name" 2>/dev/null)
-insert_cms="insmod $module_path gpio_tx=27 gpio_rx=22"
+insert_cmd="insmod $module_path gpio_tx=27 gpio_rx=22"
 
 # Check if the module was found and modinfo didn't produce an error
 if [[ -n $module_path && -f $module_path ]]; then
