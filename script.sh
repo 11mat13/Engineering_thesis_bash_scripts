@@ -44,6 +44,17 @@ cp fc_subscription/dji_sdk_config.h Payload-SDK/samples/sample_c/platform/linux/
 sudo echo -e "\nInstalling kernel module to run soft uart:\n\n"
 
 cd ~/
-sudo echo -e "\ninsmod /usr/lib/modules/6.1.0-rpi7-rpi-v8/soft_uart.ko gpio_tx=27 gpio_rx=22" | sudo tee -a /etc/rc.local > /dev/null
-sudo chmod +x /etc/rc.local
+module_name="soft_uart" # Replace with your module name (without the .ko extension)
+module_path=$(modinfo -n "$module_name" 2>/dev/null)
+
+# Check if the module was found and modinfo didn't produce an error
+if [[ -n $module_path && -f $module_path ]]; then
+    sudo echo -e "\ninsmod $module_path gpio_tx=27 gpio_rx=22" | sudo tee -a /etc/rc.local > /dev/null
+    sudo chmod +x /etc/rc.local
+    touch /etc/systemd/system/rc-local.service
+    sudo echo -e "ExecStart=/etc/rc.local start\nTimeoutSec=0\nStandardOutput=tty\nRemainAfterExit=yes\nSysVStartPriority=99\n\n[Install]\nWantedBy=multi-user.target" | sudo tee -a /etc/systemd/system/rc-local.service > /dev/null
+    sudo systemctl enable rc-local
+else
+    echo "Module not found or modinfo failed"
+fi
 sudo reboot
