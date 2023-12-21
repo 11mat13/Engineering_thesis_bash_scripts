@@ -45,4 +45,5 @@ sudo echo -e "\nInstalling kernel module to run soft uart:\n\n"
 
 cd ~/
 sudo echo -e "\ninsmod soft_uart.ko gpio_tx=27 gpio_rx=22" | sudo tee -a /etc/rc.local > /dev/null
+sudo chmod +x /etc/rc.local
 sudo reboot
