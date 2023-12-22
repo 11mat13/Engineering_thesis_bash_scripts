@@ -23,7 +23,7 @@ sudo echo -e "\nInstall DJI Payload SDK:\n\n"
 
 mkdir DJI
 cd DJI
-git clone https://github.com/dji-sdk/Payload-SDK.git
+git clone -b release/v3.3 https://github.com/dji-sdk/Payload-SDK.git
 cd $path/DJI/Payload-SDK/samples/sample_c/module_sample/
 rm -r fc_subscription/
 
